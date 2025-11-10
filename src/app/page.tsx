@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import JsonFormatter from '@/components/json-formatter/json-formatter';
 
 export default function Home() {
   return (
@@ -16,7 +15,46 @@ export default function Home() {
           </p>
         </div>
 
-        <JsonFormatter />
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-gray-900">JSON 格式化工具</h2>
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  alert('功能开发中...');
+                }}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                开始使用
+              </button>
+              <button
+                onClick={() => {
+                  alert('清空内容');
+                }}
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              >
+                清空
+              </button>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <textarea
+                placeholder="请输入 JSON 字符串..."
+                className="w-full h-32 p-3 border rounded font-mono text-sm"
+              />
+            </div>
+
+            <div>
+              <div className="p-4 bg-gray-50 rounded border min-h-[300px]">
+                <div className="text-gray-500 text-center py-12">
+                  格式化结果将显示在这里
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
