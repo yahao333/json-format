@@ -17,17 +17,48 @@
 
 ## 开发
 
-### 安装依赖
+### 使用 Makefile（推荐）
+项目提供了 Makefile 来简化常用命令：
+
+```bash
+# 查看可用命令
+make help
+
+# 安装依赖
+make install
+
+# 启动开发服务器
+make dev
+
+# 构建生产版本
+make build
+
+# 预览生产版本
+make preview
+
+# 清理项目
+make clean
+
+# 检查代码格式
+make lint
+
+# 运行测试
+make test
+```
+
+### 直接使用 npm
+
+#### 安装依赖
 ```bash
 npm install
 ```
 
-### 启动开发服务器
+#### 启动开发服务器
 ```bash
 npm run dev
 ```
 
-### 构建生产版本
+#### 构建生产版本
 ```bash
 npm run build
 ```
