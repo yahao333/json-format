@@ -35,7 +35,6 @@ export default function JsonFormatter() {
     setInput('');
     setOutput('');
     setError(null);
-    setCopied(false);
   }, []);
 
   return (
