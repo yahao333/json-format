@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Home from '@/app/page';
 
-describe('Home Page', () => {
+describe('Home Page - JSON Formatter', () => {
   it('renders the main title correctly', () => {
     render(<Home />);
 
-    const title = screen.getByText('JSON 格式化工具');
+    const title = screen.getByRole('heading', { level: 1, name: 'JSON 格式化工具' });
     expect(title).toBeInTheDocument();
     expect(title).toHaveClass('text-4xl', 'font-bold');
   });
@@ -17,29 +17,16 @@ describe('Home Page', () => {
 
     const description = screen.getByText('一个现代化的 JSON 格式化工具，让数据处理更简单');
     expect(description).toBeInTheDocument();
-    expect(description).toHaveClass('text-gray-600');
   });
 
-  it('renders the main container with correct styling', () => {
+  it('renders the JSON formatter component', () => {
     render(<Home />);
 
-    const mainContainer = screen.getByText('JSON 格式化工具').closest('main');
-    expect(mainContainer).toHaveClass('min-h-screen', 'p-8');
-  });
-
-  it('renders the content container with correct styling', () => {
-    render(<Home />);
-
-    const contentContainer = screen.getByText('JSON 格式化工具').closest('.max-w-4xl');
-    expect(contentContainer).toHaveClass('mx-auto');
-  });
-
-  it('renders the placeholder content', () => {
-    render(<Home />);
-
-    const placeholder = screen.getByText('JSON 格式化功能正在开发中...');
-    expect(placeholder).toBeInTheDocument();
-    expect(placeholder).toHaveClass('text-gray-500');
+    // Check if JSON formatter elements are present
+    expect(screen.getByPlaceholderText('请输入 JSON 字符串...')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '格式化' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /压缩/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '验证' })).toBeInTheDocument();
   });
 
   it('has the correct page structure', () => {
@@ -47,10 +34,15 @@ describe('Home Page', () => {
 
     // Check if the main elements are present
     expect(screen.getByRole('main')).toBeInTheDocument();
-    expect(screen.getByText('JSON 格式化工具')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+  });
 
-    // Check if the card container exists
-    const card = screen.getByText('JSON 格式化功能正在开发中...').closest('.bg-white');
-    expect(card).toHaveClass('rounded-lg', 'shadow-lg', 'p-6');
+  it('renders action buttons', () => {
+    render(<Home />);
+
+    const buttons = ['格式化', '验证', '清空', '加载示例'];
+    buttons.forEach(buttonText => {
+      expect(screen.getByRole('button', { name: buttonText })).toBeInTheDocument();
+    });
   });
 });
