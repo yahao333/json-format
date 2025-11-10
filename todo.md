@@ -12,12 +12,12 @@
 ## 待办事项清单
 
 ### 🟢 项目初始化
-- [ ] 初始化 Next.js 15.3 项目，配置基本项目结构
+- [x] 初始化 Next.js 15.3 项目，配置基本项目结构
 - [x] 添加 Makefile 构建工具
-- [ ] 创建 src 目录结构（components、lib、styles）
+- [x] 创建 src 目录结构（app、components、lib、styles）
 
 ### 🟢 样式配置
-- [ ] 安装和配置 TailwindCSS
+- [x] 安装和配置 TailwindCSS
 - [ ] 安装和配置 Shadcn/ui 组件库
 
 ### 🟢 核心功能
