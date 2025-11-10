@@ -7,3 +7,4 @@ globs: Only needed in Auto Attached mode, specify the file extensions to match, 
 - You can use markdown but dont have to
 rule编写规则: https://catpaw.meituan.com/guides/settings/rules
 - 代码中使用中文进行注释
+- 每次任务添加必要的单元测试
