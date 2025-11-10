@@ -15,6 +15,19 @@
 - **Shadcn/ui** - UI 组件库
 - **TypeScript** - 编程语言
 
+## 项目结构
+```
+catpawai_test/
+├── src/                 # 源代码根目录
+│   ├── components/     # React 组件
+│   ├── lib/           # 工具函数
+│   └── styles/        # 样式文件
+├── public/             # 静态资源
+├── Makefile           # 构建工具
+├── package.json       # 项目配置
+└── README.md          # 项目说明
+```
+
 ## 开发
 
 ### 使用 Makefile（推荐）

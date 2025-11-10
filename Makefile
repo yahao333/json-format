@@ -4,6 +4,12 @@
 PROJECT_NAME := json-format
 NODE_MODULES := node_modules
 PACKAGE_JSON := package.json
+SRC_DIR := src
+
+# 项目结构
+COMPONENTS_DIR := $(SRC_DIR)/components
+LIB_DIR := $(SRC_DIR)/lib
+STYLES_DIR := $(SRC_DIR)/styles
 
 # 颜色定义
 RED := \033[0;31m
