@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { Sun, Moon } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { Button } from './ui/button';
+import { Sun, Moon } from 'lucide-react';
 
-// 中文注释：浅色/暗色切换按钮（与语言切换并排显示）
 export default function ThemeToggle() {
   // 中文注释：主题状态（light / dark），默认读取本地缓存，否则为 light
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -36,15 +35,18 @@ export default function ThemeToggle() {
   };
 
   return (
-    <Button
-      size="sm"
-      variant="outline"
-      className="w-8 h-8 p-0 flex items-center justify-center"
-      onClick={toggleTheme}
-      aria-label={theme === "dark" ? "切换为浅色" : "切换为暗色"}
-      title={theme === "dark" ? "切换为浅色" : "切换为暗色"}
-    >
-      {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-    </Button>
+    <div className="flex items-center gap-4">
+      {/* 中文注释：统一按钮尺寸为 medium */}
+      <Button
+        size="md"
+        variant={theme === 'dark' ? 'outline' : 'default'}
+        className="w-8 h-8 p-0.5 flex items-center justify-center hover:scale-110 transition-transform"
+        onClick={toggleTheme}
+        aria-label={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
+        title={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
+      >
+        {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+      </Button>
+    </div>
   );
 }

@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
       <Button
         size="sm"
         variant={locale === 'zh' ? 'default' : 'outline'}
-        className={(locale === 'zh' ? 'bg-blue-600 text-white hover:bg-blue-700 ' : '') + 'w-8 h-8 p-0 justify-center'}
+        className="w-8 h-8 p-0 justify-center hover:scale-110 transition-transform"
         onClick={() => setLocale('zh')}
         aria-label="切换到中文"
       >
@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
       <Button
         size="sm"
         variant={locale === 'en' ? 'default' : 'outline'}
-        className={(locale === 'en' ? 'bg-blue-600 text-white hover:bg-blue-700 ' : '') + 'w-8 h-8 p-0 justify-center'}
+        className="w-8 h-8 p-0 justify-center hover:scale-110 transition-transform"
         onClick={() => setLocale('en')}
         aria-label="Switch to English"
       >
@@ -40,7 +40,7 @@ export default function LanguageSwitcher() {
       <Button
         size="sm"
         variant={locale === 'ja' ? 'default' : 'outline'}
-        className={(locale === 'ja' ? 'bg-blue-600 text-white hover:bg-blue-700 ' : '') + 'w-8 h-8 p-0 justify-center'}
+        className="w-8 h-8 p-0 justify-center hover:scale-110 transition-transform"
         onClick={() => setLocale('ja')}
         aria-label="日本語に切り替え"
       >

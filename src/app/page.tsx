@@ -28,21 +28,23 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-6xl mx-auto px-6">
-        {/* 中文注释：顶部右侧：语言切换 + 主题切换 */}
+        {/* 中文注释：顶部右侧：语言切换 + 主题切换（增大间距） */}
         <header className="flex items-center justify-end gap-2 md:gap-3 py-4">
           <ThemeToggle />
+          {/* 添加间隔 */}
+          <div className="w-14" />
           <LanguageSwitcher />
         </header>
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
         <section className="pt-8 pb-10 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">{t('hero.title')}</h1>
-          <p className="text-base md:text-lg text-gray-600">{t('hero.desc')}</p>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">{t('hero.title')}</h1>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">{t('hero.desc')}</p>
           {/* 中文注释：根据需求移除“开始使用/Get Started”按钮 */}
         </section>
 
         {/* 中文注释：主体工具卡片容器 */}
         <section ref={toolRef} className="pb-16">
-          <div className="rounded-xl bg-white/80 backdrop-blur border border-indigo-100 shadow-sm">
+          <div className="rounded-xl bg-white/80 dark:bg-gray-900/40 backdrop-blur border border-indigo-100 dark:border-gray-700 shadow-sm">
             <div className="p-5 sm:p-7">
               {/* 中文注释：在首页中嵌入功能组件，保持按钮文案与占位符不变 */}
               <JsonFormatter />
