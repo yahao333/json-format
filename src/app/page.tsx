@@ -27,10 +27,10 @@ export default function Home() {
 
   return (
     <main>
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
-        <section className="pt-8 pb-10 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">{t('hero.title')}</h1>
+        <section className="pt-6 pb-8 sm:pt-8 sm:pb-10 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2 sm:mb-3">{t('hero.title')}</h1>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">{t('hero.desc')}</p>
           {/* 中文注释：根据需求移除“开始使用/Get Started”按钮 */}
         </section>

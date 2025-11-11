@@ -78,9 +78,9 @@ export default function JsonFormatter() {
   return (
     <div className="space-y-6">
       {/* 中文注释：标题与操作区 */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">{t('formatter.title')}</h2>
-        <div className="flex flex-wrap gap-3 md:gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{t('formatter.title')}</h2>
+        <div className="flex flex-wrap gap-3 sm:gap-4">
           <Button
             onClick={formatJson}
             disabled={isLoading || !input.trim()}
@@ -103,30 +103,21 @@ export default function JsonFormatter() {
 
       {/* 中文注释：两栏布局，左侧输入右侧结果 */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-lg border bg-white/70 backdrop-blur p-4">
-          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+        <div className="rounded-lg border bg-gray-50 dark:bg-gray-800/50 p-4">
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {IconInput && <IconInput className="w-4 h-4" />} {t('formatter.inputLabel')}
           </label>
           <textarea
-            placeholder={t('error.inputRequired')}
+            placeholder={t('formatter.placeholder.input')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="w-full h-52 resize-y p-3 rounded-md border font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full h-52 resize-y p-3 rounded-md border font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-900 dark:text-gray-200 dark:border-gray-600"
             disabled={isLoading}
           />
-          <div className="mt-4">
-            <Button
-              onClick={formatJson}
-              disabled={isLoading || !input.trim()}
-              className="bg-green-600 hover:bg-green-700 disabled:opacity-60"
-            >
-              {IconFormat && <IconFormat className="w-4 h-4" />} {t('formatter.format')}
-            </Button>
-          </div>
         </div>
 
-        <div className="rounded-lg border bg-white/70 backdrop-blur p-4 min-h-[300px]">
-          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+        <div className="rounded-lg border bg-gray-50 dark:bg-gray-800/50 p-4 min-h-[300px]">
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {IconOutput && <IconOutput className="w-4 h-4" />} {t('formatter.outputLabel')}
           </label>
           {error ? (
