@@ -77,7 +77,7 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 
 // 中文注释：Provider 组件，提供当前语言与翻译函数
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('zh');
+  const [locale, setLocale] = useState<Locale>('en');
 
   // 中文注释：首次挂载时读取本地缓存语言
   useEffect(() => {

@@ -35,14 +35,7 @@ export default function Home() {
         <section className="pt-8 pb-10 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-3">{t('hero.title')}</h1>
           <p className="text-base md:text-lg text-gray-600">{t('hero.desc')}</p>
-          <div className="my-8 flex items-center justify-center">
-            <button
-              onClick={scrollToTool}
-              className="px-5 py-2.5 rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow-sm"
-            >
-              {t('hero.start')}
-            </button>
-          </div>
+          {/* 中文注释：根据需求移除“开始使用/Get Started”按钮 */}
         </section>
 
         {/* 中文注释：主体工具卡片容器 */}
