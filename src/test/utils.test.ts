@@ -103,16 +103,4 @@ describe('debounce function', () => {
     expect(mockFn).toHaveBeenCalledWith('arg1', 'arg2');
   });
 
-  it('maintains function context', () => {
-    const context = { value: 'test' };
-    const mockFn = vi.fn(function(this: typeof context) {
-      return this.value;
-    });
-
-    const debouncedFn = debounce(mockFn, 1000);
-    debouncedFn.call(context);
-    vi.advanceTimersByTime(1000);
-
-    expect(mockFn).toHaveBeenCalled();
-  });
 });

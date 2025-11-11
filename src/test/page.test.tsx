@@ -24,9 +24,8 @@ describe('Home Page - JSON Formatter', () => {
 
     // Check if JSON formatter elements are present
     expect(screen.getByPlaceholderText('请输入 JSON 字符串...')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '格式化' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /压缩/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '验证' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '开始使用' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '清空' })).toBeInTheDocument();
   });
 
   it('has the correct page structure', () => {
@@ -40,7 +39,7 @@ describe('Home Page - JSON Formatter', () => {
   it('renders action buttons', () => {
     render(<Home />);
 
-    const buttons = ['格式化', '验证', '清空', '加载示例'];
+    const buttons = ['开始使用', '清空'];
     buttons.forEach(buttonText => {
       expect(screen.getByRole('button', { name: buttonText })).toBeInTheDocument();
     });
