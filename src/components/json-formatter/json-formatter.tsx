@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Alert, AlertDescription } from '../ui/alert';
+import { Wand2, Trash2, Clipboard, FileJson, Braces, Sparkles } from 'lucide-react';
 
 export default function JsonFormatter() {
   const [input, setInput] = useState('');
@@ -54,6 +55,23 @@ export default function JsonFormatter() {
     }
   }, [output]);
 
+  // 中文注释：避免 SSR hydration 问题——初始使用固定图标，挂载后再随机替换
+  const [IconFormat, setIconFormat] = useState<React.ComponentType<any>>(Wand2);
+  const [IconClear, setIconClear] = useState<React.ComponentType<any>>(Trash2);
+  const [IconCopy, setIconCopy] = useState<React.ComponentType<any>>(Clipboard);
+  const [IconInput, setIconInput] = useState<React.ComponentType<any>>(Braces);
+  const [IconOutput, setIconOutput] = useState<React.ComponentType<any>>(FileJson);
+
+  useEffect(() => {
+    const pick = (icons: Array<React.ComponentType<any>>) =>
+      icons[Math.floor(Math.random() * icons.length)];
+    setIconFormat(pick([Wand2, Sparkles]));
+    setIconClear(pick([Trash2, Sparkles]));
+    setIconCopy(pick([Clipboard, Sparkles]));
+    setIconInput(pick([Braces, FileJson]));
+    setIconOutput(pick([FileJson, Braces]));
+  }, []);
+
   return (
     <div className="space-y-6">
       {/* 中文注释：标题与操作区 */}
@@ -65,17 +83,17 @@ export default function JsonFormatter() {
             disabled={isLoading || !input.trim()}
             className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60"
           >
-            {isLoading ? '格式化中...' : '格式化'}
+            {IconFormat && <IconFormat className="w-4 h-4" />} {isLoading ? '格式化中...' : '格式化'}
           </Button>
           <Button onClick={clearAll} className="bg-gray-600 hover:bg-gray-700">
-            清空
+            {IconClear && <IconClear className="w-4 h-4" />} 清空
           </Button>
           <Button
             onClick={copyToClipboard}
             disabled={!output}
             className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60"
           >
-            {copied ? '已复制' : '复制结果'}
+            {IconCopy && <IconCopy className="w-4 h-4" />} {copied ? '已复制' : '复制结果'}
           </Button>
         </div>
       </div>
@@ -83,8 +101,8 @@ export default function JsonFormatter() {
       {/* 中文注释：两栏布局，左侧输入右侧结果 */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="rounded-lg border bg-white/70 backdrop-blur p-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            输入 JSON
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+            {IconInput && <IconInput className="w-4 h-4" />} 输入 JSON
           </label>
           <textarea
             placeholder="请输入 JSON 字符串..."
@@ -99,14 +117,14 @@ export default function JsonFormatter() {
               disabled={isLoading || !input.trim()}
               className="bg-green-600 hover:bg-green-700 disabled:opacity-60"
             >
-              格式化
+              {IconFormat && <IconFormat className="w-4 h-4" />} 格式化
             </Button>
           </div>
         </div>
 
         <div className="rounded-lg border bg-white/70 backdrop-blur p-4 min-h-[300px]">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            输出结果
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+            {IconOutput && <IconOutput className="w-4 h-4" />} 输出结果
           </label>
           {error ? (
             // 中文注释：错误提示使用 Alert 组件，视觉更友好

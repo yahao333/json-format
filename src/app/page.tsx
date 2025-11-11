@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { Bug, Settings, Rocket, Heart } from 'lucide-react';
 import JsonFormatter from '../components/json-formatter/json-formatter';
 
 export default function Home() {
@@ -12,11 +13,19 @@ export default function Home() {
     toolRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // 中文注释：为页面徽标随机选择一个图标（仅在客户端挂载后执行，避免 SSR hydration 问题）
+  const [HeroIcon, setHeroIcon] = useState<React.ComponentType<any>>(Bug);
+  useEffect(() => {
+    const icons = [Bug, Rocket, Heart];
+    setHeroIcon(icons[Math.floor(Math.random() * icons.length)]);
+  }, []);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="max-w-6xl mx-auto px-6">
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
-        <section className="pt-14 pb-10 text-center">
+        <section className="pt-8 pb-10 text-center">
+    
           <h1 className="text-4xl font-bold text-gray-900 mb-3">JSON 格式化工具</h1>
           <p className="text-base md:text-lg text-gray-600">
             一个现代化的 JSON 格式化工具，让数据处理更简单
