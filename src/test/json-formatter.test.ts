@@ -1,15 +1,23 @@
 import { describe, it, expect, vi } from 'vitest';
-import { formatJson, minifyJson, validateJson, beautifyJson, getJsonHighlightHtml } from '@/lib/json-formatter';
+import {
+  formatJson,
+  minifyJson,
+  validateJson,
+  beautifyJson,
+  getJsonHighlightHtml,
+} from '@/lib/json-formatter';
 
 describe('JSON 格式化工具函数', () => {
-  const validJson = '{"name": "test", "value": 123, "active": true, "nullValue": null}';
+  const validJson =
+    '{"name": "test", "value": 123, "active": true, "nullValue": null}';
   const formattedJson = `{
   "name": "test",
   "value": 123,
   "active": true,
   "nullValue": null
 }`;
-  const minifiedJson = '{"name":"test","value":123,"active":true,"nullValue":null}';
+  const minifiedJson =
+    '{"name":"test","value":123,"active":true,"nullValue":null}';
 
   describe('formatJson', () => {
     it('应该正确格式化 JSON 字符串', () => {
@@ -121,10 +129,10 @@ describe('JSON 格式化器组件集成测试', () => {
       '{missing: quotes}',
       '{"unclosed":',
       'null',
-      'undefined' // 注意：undefined 不是有效的 JSON
+      'undefined', // 注意：undefined 不是有效的 JSON
     ];
 
-    invalidInputs.forEach(input => {
+    invalidInputs.forEach((input) => {
       const validation = validateJson(input);
       if (input === 'null') {
         // null 是有效的 JSON 值

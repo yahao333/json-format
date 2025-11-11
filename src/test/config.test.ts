@@ -43,7 +43,7 @@ describe('Application Configuration', () => {
     expect(contentPaths[1]).toContain('src/app/**/*');
     expect(contentPaths[2]).toContain('src/components/**/*');
 
-    contentPaths.forEach(path => {
+    contentPaths.forEach((path) => {
       expect(path).toMatch(/\.\{js,ts,jsx,tsx,mdx\}/);
     });
   });

@@ -20,7 +20,7 @@ export default function JsonFormatter() {
 
     try {
       // 使用防抖处理
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       const result = input; // 暂时直接返回输入
       setOutput(result);
     } catch (err) {

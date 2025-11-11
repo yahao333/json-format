@@ -7,7 +7,9 @@ describe('cn function', () => {
   });
 
   it('filters out falsy values', () => {
-    expect(cn('class1', false, 'class2', null, undefined, 'class3')).toBe('class1 class2 class3');
+    expect(cn('class1', false, 'class2', null, undefined, 'class3')).toBe(
+      'class1 class2 class3'
+    );
   });
 
   it('handles empty inputs', () => {
@@ -19,7 +21,9 @@ describe('cn function', () => {
     const isActive = true;
     const isDisabled = false;
 
-    expect(cn('base', isActive && 'active', isDisabled && 'disabled')).toBe('base active');
+    expect(cn('base', isActive && 'active', isDisabled && 'disabled')).toBe(
+      'base active'
+    );
   });
 });
 
@@ -102,5 +106,4 @@ describe('debounce function', () => {
 
     expect(mockFn).toHaveBeenCalledWith('arg1', 'arg2');
   });
-
 });

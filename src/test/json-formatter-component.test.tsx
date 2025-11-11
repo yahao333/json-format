@@ -21,7 +21,9 @@ describe('JSON 格式化器组件', () => {
     render(<JsonFormatter />);
 
     expect(screen.getByText('JSON 格式化工具')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('请输入 JSON 字符串...')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('请输入 JSON 字符串...')
+    ).toBeInTheDocument();
     expect(screen.getAllByText('格式化').length).toBeGreaterThan(0);
   });
 
@@ -51,7 +53,7 @@ describe('JSON 格式化器组件', () => {
     fireEvent.click(formatButton);
 
     // 简单等待一下让组件更新
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     // 检查输入是否清空（错误情况下可能会清空）
     expect(input.value).toBe('invalid json'); // 或者检查错误状态

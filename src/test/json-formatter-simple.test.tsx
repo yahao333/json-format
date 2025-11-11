@@ -12,7 +12,9 @@ describe('JSON 格式化器组件 - 简化测试', () => {
     render(<JsonFormatter />);
 
     expect(screen.getByText('JSON 格式化工具')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('请输入 JSON 字符串...')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('请输入 JSON 字符串...')
+    ).toBeInTheDocument();
   });
 
   it('应该显示基本按钮', () => {

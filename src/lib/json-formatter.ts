@@ -19,7 +19,9 @@ export function formatJson(jsonString: string, indent: number = 2): string {
     // 格式化并返回
     return JSON.stringify(parsed, null, indent);
   } catch (error) {
-    throw new Error(`JSON 格式错误: ${error instanceof Error ? error.message : '未知错误'}`);
+    throw new Error(
+      `JSON 格式错误: ${error instanceof Error ? error.message : '未知错误'}`
+    );
   }
 }
 
@@ -34,7 +36,9 @@ export function minifyJson(jsonString: string): string {
     const parsed = JSON.parse(trimmed);
     return JSON.stringify(parsed);
   } catch (error) {
-    throw new Error(`JSON 格式错误: ${error instanceof Error ? error.message : '未知错误'}`);
+    throw new Error(
+      `JSON 格式错误: ${error instanceof Error ? error.message : '未知错误'}`
+    );
   }
 }
 
@@ -59,7 +63,7 @@ export function validateJson(jsonString: string): {
   } catch (error) {
     return {
       isValid: false,
-      error: error instanceof Error ? error.message : '未知错误'
+      error: error instanceof Error ? error.message : '未知错误',
     };
   }
 }
@@ -78,7 +82,9 @@ export function beautifyJson(jsonString: string): string {
 
     return formatJson(jsonString, 2);
   } catch (error) {
-    throw new Error(`JSON 美化失败: ${error instanceof Error ? error.message : '未知错误'}`);
+    throw new Error(
+      `JSON 美化失败: ${error instanceof Error ? error.message : '未知错误'}`
+    );
   }
 }
 
@@ -95,21 +101,24 @@ export function getJsonHighlightHtml(jsonString: string): string {
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
-      .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-        let cls = 'json-number';
-        if (/^"/.test(match)) {
-          if (/:$/.test(match)) {
-            cls = 'json-key';
-          } else {
-            cls = 'json-string';
+      .replace(
+        /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+        function (match) {
+          let cls = 'json-number';
+          if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+              cls = 'json-key';
+            } else {
+              cls = 'json-string';
+            }
+          } else if (/true|false/.test(match)) {
+            cls = 'json-boolean';
+          } else if (/null/.test(match)) {
+            cls = 'json-null';
           }
-        } else if (/true|false/.test(match)) {
-          cls = 'json-boolean';
-        } else if (/null/.test(match)) {
-          cls = 'json-null';
+          return '<span class="' + cls + '">' + match + '</span>';
         }
-        return '<span class="' + cls + '">' + match + '</span>';
-      });
+      );
   } catch (error) {
     return `<span class="json-error">${jsonString}</span>`;
   }

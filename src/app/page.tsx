@@ -17,7 +17,9 @@ export default function Home() {
 
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-900">JSON 格式化工具</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              JSON 格式化工具
+            </h2>
             <div className="flex gap-2">
               <button
                 onClick={() => {

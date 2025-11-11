@@ -7,7 +7,10 @@ describe('Home Page - JSON Formatter', () => {
   it('renders the main title correctly', () => {
     render(<Home />);
 
-    const title = screen.getByRole('heading', { level: 1, name: 'JSON 格式化工具' });
+    const title = screen.getByRole('heading', {
+      level: 1,
+      name: 'JSON 格式化工具',
+    });
     expect(title).toBeInTheDocument();
     expect(title).toHaveClass('text-4xl', 'font-bold');
   });
@@ -15,7 +18,9 @@ describe('Home Page - JSON Formatter', () => {
   it('renders the description text', () => {
     render(<Home />);
 
-    const description = screen.getByText('一个现代化的 JSON 格式化工具，让数据处理更简单');
+    const description = screen.getByText(
+      '一个现代化的 JSON 格式化工具，让数据处理更简单'
+    );
     expect(description).toBeInTheDocument();
   });
 
@@ -23,8 +28,12 @@ describe('Home Page - JSON Formatter', () => {
     render(<Home />);
 
     // Check if JSON formatter elements are present
-    expect(screen.getByPlaceholderText('请输入 JSON 字符串...')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '开始使用' })).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('请输入 JSON 字符串...')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: '开始使用' })
+    ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '清空' })).toBeInTheDocument();
   });
 
@@ -40,8 +49,10 @@ describe('Home Page - JSON Formatter', () => {
     render(<Home />);
 
     const buttons = ['开始使用', '清空'];
-    buttons.forEach(buttonText => {
-      expect(screen.getByRole('button', { name: buttonText })).toBeInTheDocument();
+    buttons.forEach((buttonText) => {
+      expect(
+        screen.getByRole('button', { name: buttonText })
+      ).toBeInTheDocument();
     });
   });
 });

@@ -2,13 +2,8 @@
  * Utility function to merge Tailwind CSS classes
  */
 export function cn(...inputs: (string | undefined | null | false)[]): string {
-  return inputs
-    .filter(Boolean)
-    .join(' ')
-    .replace(/\s+/, ' ')
-    .trim();
+  return inputs.filter(Boolean).join(' ').replace(/\s+/, ' ').trim();
 }
-
 
 /**
  * Format date to Chinese format
