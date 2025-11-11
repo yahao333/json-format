@@ -35,6 +35,7 @@
     "test:run": "vitest run",
     "test:coverage": "vitest --coverage",
     "test:ui": "vitest --ui",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "vercel --prod"
   }
 }
