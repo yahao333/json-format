@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '../lib/i18n';
+import { ThemeProvider } from '../components/theme-provider';
 
 export const metadata: Metadata = {
   title: 'JSON 格式化工具',
@@ -13,10 +14,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body>
         {/* 中文注释：注入语言 Provider，使全站具备中/英/日三语支持 */}
-        <LanguageProvider>{children}</LanguageProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

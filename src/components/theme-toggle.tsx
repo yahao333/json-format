@@ -1,51 +1,40 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useTheme } from 'next-themes';
+
 import { Button } from './ui/button';
 import { Sun, Moon } from 'lucide-react';
+import { useI18n } from '../lib/i18n';
 
 export default function ThemeToggle() {
-  // 中文注释：主题状态（light / dark），默认读取本地缓存，否则为 light
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { t } = useI18n();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
-  // 中文注释：初始化时同步 html 的 dark 类，保证刷新后仍保持用户选择
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("theme");
-      const initial = saved === "dark" ? "dark" : "light";
-      setTheme(initial);
-      const root = document.documentElement;
-      if (initial === "dark") root.classList.add("dark");
-      else root.classList.remove("dark");
-    } catch {}
+  React.useEffect(() => {
+    setMounted(true);
   }, []);
 
-  // 中文注释：切换主题并写入本地缓存
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const next = prev === "light" ? "dark" : "light";
-      const root = document.documentElement;
-      if (next === "dark") root.classList.add("dark");
-      else root.classList.remove("dark");
-      try {
-        localStorage.setItem("theme", next);
-      } catch {}
-      return next;
-    });
-  };
+  if (!mounted) {
+    // To prevent hydration mismatch, we render a placeholder on the server.
+    // This also prevents layout shift.
+    return <div className="w-8 h-8" />;
+  }
+
+  const isDark = theme === 'dark';
 
   return (
     <div className="flex items-center gap-4">
-      {/* 中文注释：统一按钮尺寸为 sm，并使用 p-1.5 调整内边距 */}
       <Button
         size="sm"
         variant="outline"
         className="w-8 h-8 p-1.5 flex items-center justify-center hover:scale-110 transition-transform"
-        onClick={toggleTheme}
-        aria-label={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
-        title={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
+        onClick={() => setTheme(isDark ? 'light' : 'dark')}
+        aria-label={isDark ? t('theme.toggle.light') : t('theme.toggle.dark')}
+        title={isDark ? t('theme.toggle.light') : t('theme.toggle.dark')}
       >
-        {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+        {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
       </Button>
     </div>
   );

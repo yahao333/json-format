@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <main>
       <div className="max-w-6xl mx-auto px-6">
         {/* 中文注释：顶部右侧：主题切换 + 语言切换；统一使用 gap 控制间距，移除固定宽度占位 */}
         <header className="flex items-center justify-end gap-3 md:gap-4 py-4 pr-2 md:pr-3">
