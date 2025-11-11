@@ -80,7 +80,7 @@ export default function JsonFormatter() {
       {/* 中文注释：标题与操作区 */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-2xl font-bold text-gray-900">{t('formatter.title')}</h2>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3 md:gap-4">
           <Button
             onClick={formatJson}
             disabled={isLoading || !input.trim()}
@@ -114,7 +114,7 @@ export default function JsonFormatter() {
             className="w-full h-52 resize-y p-3 rounded-md border font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
             disabled={isLoading}
           />
-          <div className="mt-3">
+          <div className="mt-4">
             <Button
               onClick={formatJson}
               disabled={isLoading || !input.trim()}
