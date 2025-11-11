@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Bug, Settings, Rocket, Heart } from 'lucide-react';
 import JsonFormatter from '../components/json-formatter/json-formatter';
 import LanguageSwitcher from '../components/language-switcher';
+import ThemeToggle from '../components/theme-toggle';
 import { useI18n } from '../lib/i18n';
 
 export default function Home() {
@@ -25,10 +26,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-6xl mx-auto px-6">
-        {/* 中文注释：顶部右侧语言切换 */}
-        <header className="flex items-center justify-end py-4">
+        {/* 中文注释：顶部右侧：语言切换 + 主题切换 */}
+        <header className="flex items-center justify-end gap-2 md:gap-3 py-4">
+          <ThemeToggle />
           <LanguageSwitcher />
         </header>
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
