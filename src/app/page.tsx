@@ -3,8 +3,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Bug, Settings, Rocket, Heart } from 'lucide-react';
 import JsonFormatter from '../components/json-formatter/json-formatter';
+import LanguageSwitcher from '../components/language-switcher';
+import { useI18n } from '../lib/i18n';
 
 export default function Home() {
+  // 中文注释：获取翻译函数
+  const { t } = useI18n();
   // 中文注释：用于滚动到工具区域的引用
   const toolRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,13 +27,22 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="max-w-6xl mx-auto px-6">
+        {/* 中文注释：顶部右侧语言切换 */}
+        <header className="flex items-center justify-end py-4">
+          <LanguageSwitcher />
+        </header>
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
         <section className="pt-8 pb-10 text-center">
-    
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">JSON 格式化工具</h1>
-          <p className="text-base md:text-lg text-gray-600">
-            一个现代化的 JSON 格式化工具，让数据处理更简单
-          </p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">{t('hero.title')}</h1>
+          <p className="text-base md:text-lg text-gray-600">{t('hero.desc')}</p>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <button
+              onClick={scrollToTool}
+              className="px-5 py-2.5 rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow-sm"
+            >
+              {t('hero.start')}
+            </button>
+          </div>
         </section>
 
         {/* 中文注释：主体工具卡片容器 */}

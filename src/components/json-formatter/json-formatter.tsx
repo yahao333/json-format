@@ -4,8 +4,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Wand2, Trash2, Clipboard, FileJson, Braces, Sparkles } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function JsonFormatter() {
+  // 中文注释：引入翻译函数
+  const { t } = useI18n();
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +17,7 @@ export default function JsonFormatter() {
 
   const formatJson = useCallback(async () => {
     if (!input.trim()) {
-      setError('请输入 JSON 字符串');
+      setError(t('error.inputRequired'));
       setOutput('');
       return;
     }
@@ -28,12 +31,12 @@ export default function JsonFormatter() {
       const result = JSON.stringify(JSON.parse(input), null, 2);
       setOutput(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : '格式化失败');
+      setError(err instanceof Error ? err.message : t('error.formatFailed'));
       setOutput('');
     } finally {
       setIsLoading(false);
     }
-  }, [input]);
+  }, [input, t]);
 
   const clearAll = useCallback(() => {
     setInput('');
@@ -51,9 +54,9 @@ export default function JsonFormatter() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('复制失败:', err);
+      console.error(t('error.copyFailed') + ':', err);
     }
-  }, [output]);
+  }, [output, t]);
 
   // 中文注释：避免 SSR hydration 问题——初始使用固定图标，挂载后再随机替换
   const [IconFormat, setIconFormat] = useState<React.ComponentType<any>>(Wand2);
@@ -76,24 +79,24 @@ export default function JsonFormatter() {
     <div className="space-y-6">
       {/* 中文注释：标题与操作区 */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">JSON 格式化工具</h2>
+        <h2 className="text-2xl font-bold text-gray-900">{t('formatter.title')}</h2>
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={formatJson}
             disabled={isLoading || !input.trim()}
             className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60"
           >
-            {IconFormat && <IconFormat className="w-4 h-4" />} {isLoading ? '格式化中...' : '格式化'}
+            {IconFormat && <IconFormat className="w-4 h-4" />} {isLoading ? t('formatter.formatting') : t('formatter.format')}
           </Button>
           <Button onClick={clearAll} className="bg-gray-600 hover:bg-gray-700">
-            {IconClear && <IconClear className="w-4 h-4" />} 清空
+            {IconClear && <IconClear className="w-4 h-4" />} {t('formatter.clear')}
           </Button>
           <Button
             onClick={copyToClipboard}
             disabled={!output}
             className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60"
           >
-            {IconCopy && <IconCopy className="w-4 h-4" />} {copied ? '已复制' : '复制结果'}
+            {IconCopy && <IconCopy className="w-4 h-4" />} {copied ? t('formatter.copied') : t('formatter.copy')}
           </Button>
         </div>
       </div>
@@ -102,10 +105,10 @@ export default function JsonFormatter() {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="rounded-lg border bg-white/70 backdrop-blur p-4">
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            {IconInput && <IconInput className="w-4 h-4" />} 输入 JSON
+            {IconInput && <IconInput className="w-4 h-4" />} {t('formatter.inputLabel')}
           </label>
           <textarea
-            placeholder="请输入 JSON 字符串..."
+            placeholder={t('error.inputRequired')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="w-full h-52 resize-y p-3 rounded-md border font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -117,14 +120,14 @@ export default function JsonFormatter() {
               disabled={isLoading || !input.trim()}
               className="bg-green-600 hover:bg-green-700 disabled:opacity-60"
             >
-              {IconFormat && <IconFormat className="w-4 h-4" />} 格式化
+              {IconFormat && <IconFormat className="w-4 h-4" />} {t('formatter.format')}
             </Button>
           </div>
         </div>
 
         <div className="rounded-lg border bg-white/70 backdrop-blur p-4 min-h-[300px]">
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            {IconOutput && <IconOutput className="w-4 h-4" />} 输出结果
+            {IconOutput && <IconOutput className="w-4 h-4" />} {t('formatter.outputLabel')}
           </label>
           {error ? (
             // 中文注释：错误提示使用 Alert 组件，视觉更友好
@@ -138,9 +141,7 @@ export default function JsonFormatter() {
               {output}
             </pre>
           ) : (
-            <div className="text-gray-500 text-center py-12">
-              格式化结果将显示在这里
-            </div>
+            <div className="text-gray-500 text-center py-12">{t('formatter.placeholder')}</div>
           )}
         </div>
       </div>
