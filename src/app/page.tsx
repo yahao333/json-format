@@ -30,14 +30,6 @@ export default function Home() {
           <p className="text-base md:text-lg text-gray-600">
             一个现代化的 JSON 格式化工具，让数据处理更简单
           </p>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              onClick={scrollToTool}
-              className="px-5 py-2.5 rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow-sm"
-            >
-              开始使用
-            </button>
-          </div>
         </section>
 
         {/* 中文注释：主体工具卡片容器 */}
