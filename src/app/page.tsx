@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Bug, Settings, Rocket, Heart } from 'lucide-react';
 import JsonFormatter from '../components/json-formatter/json-formatter';
-import LanguageSwitcher from '../components/language-switcher';
+import { LanguageSwitcher } from '../components/language-switcher';
 import ThemeToggle from '../components/theme-toggle';
 import { useI18n } from '../lib/i18n';
 
@@ -28,11 +28,6 @@ export default function Home() {
   return (
     <main>
       <div className="max-w-6xl mx-auto px-6">
-        {/* 中文注释：顶部右侧：主题切换 + 语言切换；统一使用 gap 控制间距，移除固定宽度占位 */}
-        <header className="flex items-center justify-end gap-3 md:gap-4 py-4 pr-2 md:pr-3">
-          <ThemeToggle />
-          <LanguageSwitcher />
-        </header>
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
         <section className="pt-8 pb-10 text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">{t('hero.title')}</h1>

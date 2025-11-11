@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '../lib/i18n';
 import { ThemeProvider } from '../components/theme-provider';
+import { Header } from '../components/header';
 
 export const metadata: Metadata = {
   title: 'JSON 格式化工具',
@@ -23,7 +24,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <Header />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
