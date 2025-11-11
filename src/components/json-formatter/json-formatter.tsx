@@ -7,6 +7,7 @@ export default function JsonFormatter() {
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [copied, setCopied] = useState<boolean>(false);
 
   const formatJson = useCallback(async () => {
     if (!input.trim()) {
@@ -21,7 +22,7 @@ export default function JsonFormatter() {
     try {
       // 使用防抖处理
       await new Promise((resolve) => setTimeout(resolve, 100));
-      const result = input; // 暂时直接返回输入
+      const result = JSON.stringify(JSON.parse(input), null, 2);
       setOutput(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : '格式化失败');
@@ -35,12 +36,26 @@ export default function JsonFormatter() {
     setInput('');
     setOutput('');
     setError(null);
+    setCopied(false);
   }, []);
+
+  const copyToClipboard = useCallback(async () => {
+    if (!output) return;
+
+    try {
+      await navigator.clipboard.writeText(output);
+      // 这里可以添加复制成功的提示
+    } catch (err) {
+      console.error('复制失败:', err);
+    }
+  }, [output]);
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">JSON 格式化工具</h2>
+        <h2 className="text-2xl font-bold text-gray-900">
+          JSON 格式化工具
+        </h2>
         <div className="flex gap-2">
           <button
             onClick={formatJson}
