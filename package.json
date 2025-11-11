@@ -36,6 +36,6 @@
     "test:coverage": "vitest --coverage",
     "test:ui": "vitest --ui",
     "format": "prettier --write .",
-    "deploy": "vercel --prod"
+    "deploy": "echo 'Deploy script not configured. Please set up your deployment script here'"
   }
 }

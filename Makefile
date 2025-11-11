@@ -110,9 +110,9 @@ info:  ## 显示项目信息
 
 # 部署相关
 .PHONY: deploy
-deploy: build  ## 部署到生产环境
+deploy: build  ## 部署到生产环境（需要配置部署脚本）
 	@echo "$(BLUE)部署到生产环境...$(NC)"
-	@npm run deploy || (echo "$(GREEN)✓ 项目已构建完成，请提交到 GitHub 以触发 Vercel 自动部署$(NC)" && echo "$(YELLOW)注意：确保 package.json 中有正确的 scripts.deploy 配置$(NC)")
+	@npm run deploy || echo "$(YELLOW)提示: 未配置 deploy 脚本，请手动部署$(NC)"
 
 # 默认目标
 .DEFAULT_GOAL := help
