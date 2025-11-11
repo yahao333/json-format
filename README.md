@@ -85,4 +85,4 @@ npm run build
 
 ## 部署
 
-项目可以部署到 Vercel、Netlify 或其他支持 Next.js 的平台。
+项目可以部署到支持 Next.js 的平台（例如 Netlify 等）。
