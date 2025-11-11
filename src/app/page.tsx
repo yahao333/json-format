@@ -28,11 +28,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-6xl mx-auto px-6">
-        {/* 中文注释：顶部右侧：语言切换 + 主题切换（增大间距） */}
-        <header className="flex items-center justify-end gap-2 md:gap-3 py-4">
+        {/* 中文注释：顶部右侧：主题切换 + 语言切换；统一使用 gap 控制间距，移除固定宽度占位 */}
+        <header className="flex items-center justify-end gap-3 md:gap-4 py-4 pr-2 md:pr-3">
           <ThemeToggle />
-          {/* 添加间隔 */}
-          <div className="w-14" />
           <LanguageSwitcher />
         </header>
         {/* 中文注释：页面顶部 Hero 区域，简洁但更美观 */}
