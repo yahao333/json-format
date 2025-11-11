@@ -36,11 +36,11 @@ export default function ThemeToggle() {
 
   return (
     <div className="flex items-center gap-4">
-      {/* 中文注释：统一按钮尺寸为 medium */}
+      {/* 中文注释：统一按钮尺寸为 sm，并使用 p-1.5 调整内边距 */}
       <Button
-        size="md"
-        variant={theme === 'dark' ? 'outline' : 'default'}
-        className="w-8 h-8 p-0.5 flex items-center justify-center hover:scale-110 transition-transform"
+        size="sm"
+        variant="outline"
+        className="w-8 h-8 p-1.5 flex items-center justify-center hover:scale-110 transition-transform"
         onClick={toggleTheme}
         aria-label={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
         title={theme === 'dark' ? "切换到浅色" : "切换为暗色"}
