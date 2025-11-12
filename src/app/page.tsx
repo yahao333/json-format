@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import { Bug, Settings, Rocket, Heart } from 'lucide-react';
+import { Bug, Settings, Rocket, Heart, Mail } from 'lucide-react';
 import JsonFormatter from '../components/json-formatter/json-formatter';
 import { LanguageSwitcher } from '../components/language-switcher';
 import ThemeToggle from '../components/theme-toggle';
@@ -44,6 +44,15 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <footer className="text-center py-6 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex justify-center gap-4">
+            <a href="mailto:apprank@outlook.com" className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:hover:bg-gray-800 dark:hover:text-gray-50" aria-label="Email" title="Email">
+              <span className="icon" aria-hidden="true">✉️</span>
+            </a>
+          </div>
+          <p className="mt-2">© {new Date().getFullYear()} JSON Formatter. All Rights Reserved.</p>
+        </footer>
       </div>
     </main>
   );
